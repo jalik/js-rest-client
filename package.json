@@ -1,0 +1,53 @@
+{
+  "name": "rest-client",
+  "version": "0.1.0",
+  "description": "A simple REST client.",
+  "license": "MIT",
+  "keywords": [
+    "api",
+    "client",
+    "rest"
+  ],
+  "author": {
+    "name": "Karl Stein",
+    "email": "karl.stein.pro@gmail.com",
+    "url": "https://github.com/jalik"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jalik/js-rest-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jalik/js-rest-client/issues"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx gulp build",
+    "lint": "npx eslint .",
+    "lint-fix": "npx eslint --fix .",
+    "prepare": "npx gulp prepare",
+    "prepublishOnly": "npm test",
+    "test": "npx jest --detectOpenHandles",
+    "watch": "npx gulp watch"
+  },
+  "dependencies": {
+    "whatwg-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@jalik/rest-server": "^2.0.1",
+    "babel-eslint": "^10.0.3",
+    "body-parser": "^1.19.0",
+    "del": "^5.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^23.7.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-eslint": "^6.0.0",
+    "jest": "^25.1.0",
+    "typescript": "^3.8.3"
+  }
+}
