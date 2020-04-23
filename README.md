@@ -24,8 +24,6 @@ import RestClient from '@jalik/rest-client';
 const client = new RestClient({
   // The base URL of all requests.
   baseUrl: 'https://rest.coinapi.io/v1',
-  // The default headers for all requests...
-  headers: {},
 });
 ```
 
@@ -33,8 +31,8 @@ const client = new RestClient({
 
 ### Fetch
 
-Fetch is the simplest way to execute HTTP requests in web browsers.
-The REST client is using fetch under the hood, thus it accepts the same options and returns a `Promise`.
+Fetch is the standard and simplest way to execute HTTP requests in web browsers using `Promise`.
+This lib is using `fetch()` under the hood (via the `whatwg-fetch` polyfill package), so if you know how to use `fetch()`, you already know how to craft requests with this REST client.
 
 See how to use fetch on https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch.
 
@@ -60,7 +58,7 @@ This method is generic, so to make code more concise and readable, you can use a
 
 **Note about JSON serialization**
 
-The `fetch()` method which called by all other verbs (delete, get, patch...) will automatically serialize the request body, if body is an object and the header `content-type` is `application/json`.
+The `fetch()` method which is called by all the methods below (delete, get, patch...) will automatically serialize the request body, if `body` is an object and the header `content-type` is `application/json`.
 
 ### DELETE
 
@@ -168,6 +166,7 @@ client.put('/users', body, {
 ## Managing headers
 
 Headers can be set when creating the `RestClient` instance.
+For example the code below will send the `accept` header with all requests (while being overridable on each request).
 
 ```js
 const client = new RestClient({
@@ -178,30 +177,47 @@ const client = new RestClient({
 });
 ```
 
-They can be get or set at anytime.
+Headers can be get or set at anytime and anywhere in your code.
 
 ```js
 client.setHeader('accept', '*');
 client.getHeader('accept');
 ```
 
-Note that all header names are lowercased automatically in `getHeader()` and `setHeader()`, so the following code is referring to the same exact header.
+Note that all header names are lower cased automatically in `getHeader()` and `setHeader()` to make it more bug proof, so the following code is referring to the same header.
 
 ```js
-// sets 'accept' header internally
+// Define 'accept' header equivalents
 client.setHeader('Accept', '*');
+client.setHeader('ACCEPT', '*');
 client.setHeader('accept', '*');
 
-// gets 'accept' header internally
+// Return 'accept' header equivalents
 client.getHeader('Accept');
+client.getHeader('ACCEPT');
 client.getHeader('accept');
 ```
 
-If you need to loop through all defined headers.
+If you need to override or remove specific headers for a request it's still possible by passing these headers in the request options. The next example works with all methods (delete, patch, post...).
+
+```js
+// This will replace the `accept` header only for this request.
+client.get('/users', {
+  headers: { accept: 'application/xml' }
+});
+
+// This will not send current credentials for this request.
+client.post('/auth', { user: 'jalik', pass: 'yun8amginIr#' }, {
+  headers: { authorization: '' }
+});
+```
+
+Finally, if you need to loop through all defined headers.
 
 ```js
 client.getHeaderNames().forEach((name) => {
-  // do something
+  const value = client.getHeader(name);
+  // do something with value...
 });
 ```
 
