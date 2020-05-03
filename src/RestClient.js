@@ -77,6 +77,7 @@ class RestClient {
    * @return {Promise<unknown>}
    */
   fetch(url, options = {}) {
+    const headers = options.headers || {};
     let requestUrl = url;
 
     // Complete relative URL.
@@ -93,7 +94,7 @@ class RestClient {
       ...options,
       headers: {
         ...this.headers,
-        ...options?.headers,
+        ...headers,
       },
     };
 
