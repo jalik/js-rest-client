@@ -14,5 +14,8 @@ gulpfile.js
 # Dependencies
 /node_modules/
 
+# Sources
+/src/
+
 # Tests
 /test/
