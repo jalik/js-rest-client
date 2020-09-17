@@ -1,7 +1,10 @@
 # Changelog
 
+## v1.0.2
+- Upgrades dependencies
+
 ## v1.0.1
-- Updates dependencies
+- Upgrades dependencies
 
 ## v1.0.0
 - First public release
