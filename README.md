@@ -7,6 +7,10 @@
 [![GitHub issues](https://img.shields.io/github/issues/jalik/js-rest-client.svg)](https://github.com/jalik/js-rest-client/issues)
 ![npm](https://img.shields.io/npm/dt/@jalik/rest-client.svg)
 
+**WARNING: DEPRECATED PACKAGE**  
+I've made a mistake while naming this package, so I decided to create a new one with a different name and lightly different goal, using TypeScript.  
+Have a look at [@jalik/fetch-client](https://github.com/jalik/js-fetch-client) to use an HTTP client based on fetch which runs in the Browser and NodeJS, with global config, shortcut methods, transformations capabilities and more.
+
 ## Why using this ?
 
 We often repeat our self when creating a REST client, however there are some little things that could be avoided on each request, like concatenating base URL with path, passing credentials, serializing data...
